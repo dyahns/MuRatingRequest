@@ -6,6 +6,17 @@ final class MuRatingRequestTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(MuRatingRequest().text, "Hello, World!")
+        XCTAssertNotNil(
+            MuRatingRequestManager(
+                configuration: MuRatingRequestManager.Configuration(
+                    daysUntilPrompt: 0,
+                    sessionsUntilPrompt: 0,
+                    eventsUntilPrompt: 0,
+                    ignoreAppVersion: true,
+                    onRatingRequest: nil
+                ),
+                prefs: MuRatingRequestCounterMock()
+            )
+        )
     }
 }
