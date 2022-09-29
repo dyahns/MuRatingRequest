@@ -10,7 +10,7 @@ Rating request manager tracks
 
 A call to `StoreKit`'s `SKStoreReviewController.requestReview(in:)` will fire only when all conditions are met. 
 
-Successful rating requests can be optionally delayed and cancelled while pending to avoid interrupting the user if the user continues to interact with the app.
+Successful rating requests can be optionally delayed and cancelled while pending in order to avoid interrupting the user if the user continues to interact with the app.
 
 ## How to use
 
@@ -36,8 +36,8 @@ let manager = MuRatingRequestManager(
 
 5. Add a call to `MuRatingRequestManager.requestRating(after:)` somewhere where it would make sense from UX perspective. This call will only translate to `SKStoreReviewController.requestReview(in:)` when all conditions are met.
 
-    By default, rating request is triggered once per app build/version. You can change that by passing `ignoreAppVersion` set to true when configuring conditions. In latter case, all the counters are reset and will need to be met again for the request to be triggered again.
+    By default, rating request is triggered once per app build/version. You can change that by passing `ignoreAppVersion` set to true when configuring conditions. In the latter case, all the counters are reset and will need to be met again for the request to be re-triggered.
     
-    Counters also get reset on first launch after updating the app to a new version. Events tracked after triggering rating request for the previous app version won't count after the update.
+    Counters also get reset on first launch after updating the app to a new version. Events tracked after triggering rating request for the previous app version are discarded and won't count towards the new version.
 
-6. When conditions are met, `MuRatingRequestManager.requestRating(after:)` schedules the rating request to fire after 2 seconds by default. You can specify your own delay or pass `nil` for the request to fire immediately. Pending request can be cancelled using `MuRatingRequestManager.cancelPendingRequest()`, for example in the event of other user interactions. 
+6. Given that conditions are met, `MuRatingRequestManager.requestRating(after:)` schedules the rating request to fire after delay (2 seconds by default). You can specify your own value or pass `nil` for the request to fire immediately. Pending request can be cancelled using `MuRatingRequestManager.cancelPendingRequest()`, for example in case the user continues to interact with the app. 
