@@ -93,6 +93,9 @@ public struct MuRatingRequestManager {
         configuration.onRatingRequest?(prefs.configurationState)
         prefs.lastVersionPromptedForRating = applicationVersion
 
+        // reset counters for the scenario where Configuration.ignoreAppVersion is set to true
+        prefs.resetRatingCounters()
+
         #if os(macOS)
         SKStoreReviewController.requestReview()
         #else
