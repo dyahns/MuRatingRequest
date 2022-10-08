@@ -7,7 +7,7 @@ extension UserDefaults: MuRatingRequestCounter {
         }
         set(newValue) {
             self.set(newValue, forKey: Constant.Key.lastVersionPromptedForRating)
-            print("Last version prompted for rating set to \(newValue ?? "n/a") and saved!")
+            log("Last version prompted for rating set to \(newValue ?? "n/a") and saved!")
         }
     }
     
@@ -17,7 +17,7 @@ extension UserDefaults: MuRatingRequestCounter {
         }
         set(newValue) {
             self.set(newValue, forKey: Constant.Key.ratingEventsCount)
-            print("Rating event count set to \(newValue) and saved!")
+            log("Rating event count set to \(newValue) and saved!")
         }
     }
     
@@ -27,7 +27,7 @@ extension UserDefaults: MuRatingRequestCounter {
         }
         set(newValue) {
             self.set(newValue, forKey: Constant.Key.appSessionsCount)
-            print("App session count set to \(newValue) and saved!")
+            log("App session count set to \(newValue) and saved!")
         }
     }
 
@@ -37,7 +37,7 @@ extension UserDefaults: MuRatingRequestCounter {
         }
         set(newValue) {
             self.set(newValue, forKey: Constant.Key.firstOpenDate)
-            print("First open date set to \(newValue?.description ?? "") and saved!")
+            log("First open date set to \(newValue?.description ?? "") and saved!")
         }
     }
     
@@ -47,7 +47,7 @@ extension UserDefaults: MuRatingRequestCounter {
         }
         set(newValue) {
             self.set(newValue, forKey: Constant.Key.versionForRatingRequestCounters)
-            print("Version used for rating counters set to \(newValue ?? "n/a") and saved!")
+            log("Version used for rating counters set to \(newValue ?? "n/a") and saved!")
         }
     }
 }

@@ -53,11 +53,12 @@ public struct MuRatingRequestManager {
 
         // ignore request if delay is never
         guard delay != .never else { return }
-            
+        
         // dispatch request after delay
         let requestWorkItem = DispatchWorkItem { sendRequest() }
         pendingRequest.workItem = requestWorkItem
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: requestWorkItem)
+        log("Scheduled rating request with delay \(delay)")
     }
     
     /// Tracks custom events before rating request
@@ -81,7 +82,7 @@ public struct MuRatingRequestManager {
     /// Cancels pending rating request, if it was triggered with a delay
     public func cancelPendingRequest() {
         if pendingRequest.workItem?.isCancelled == false {
-            print("Cancelling pending rating request...")
+            log("Cancelling pending rating request...")
         }
         
         pendingRequest.workItem?.cancel()
@@ -141,6 +142,7 @@ public struct MuRatingRequestManager {
         guard let applicationVersion = applicationVersion,
               applicationVersion != prefs.currentAppVersion else { return }
 
+        log("New app build \(applicationVersion). Resetting counters...")
         prefs.currentAppVersion = applicationVersion
         prefs.resetRatingCounters()
     }

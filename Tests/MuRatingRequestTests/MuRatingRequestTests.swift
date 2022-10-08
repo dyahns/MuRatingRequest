@@ -107,7 +107,6 @@ final class MuRatingRequestTests: XCTestCase {
             configuration: .init(
                 eventsUntilPrompt: 2,
                 onRatingRequest: { state in
-                    print(state.ratingEventsCount)
                     notYet.fulfill()
                     done.fulfill()
                 }
